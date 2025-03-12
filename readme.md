@@ -1,9 +1,9 @@
-## Googel Cloud Managed Kafka Data Producer
+## Googel Cloud Pubsub Data Producer
 
 ### TL;DR
-Purpose of this producer is used for Google Cloud Managed Kafka load test. Hence you could use that for sizing and cost estimation
+Purpose of this producer is used for Google Cloud Pubsub load test. Hence you could use this for performance and cost estimation
 
-Use this [dataflow consumer](https://github.com/cloudymoma/managedkafka-dataflow) to achieve best performance and retrieve stats information.
+Use this [dataflow consumer](https://github.com/cloudymoma/pubsub-dataflow) to achieve best performance and retrieve stats information.
 
 ### Quickstart
 
@@ -11,11 +11,11 @@ Use this [dataflow consumer](https://github.com/cloudymoma/managedkafka-dataflow
 
 ##### code you need to change before build 
 
-- `topicName` is the Kafka Topic you want to send to
-- `"bootstrap.servers": "bootstrap.dingo-kafka.us-central1.managedkafka.du-hast-mich.cloud.goog:9092",` replace the value accordingly to your Kafka server
-- `case <-time.After(100 * time.Millisecond):`, 1000 means 1 message per second per publisher, smaller number means higher producing rate. Completely turn this off could result 429 push back from Kafka. The program has the backoff strategy, so it shouldn't crash. Use it wisely.
+- `topicName` is the Pubsub Topic you want to send to
+- `serviceAccountKeyFilePath` Path of your service account key file, make sure it has the permission to send data to your Pubsub Topic.
+- `case <-time.After(100 * time.Millisecond):`, 1000 means 1 message per second per publisher, smaller number means higher producing rate. Completely turn this off could result 429 push back from Pubsub. The program has the backoff strategy, so it shouldn't crash. Use it wisely.
 - *Optional*
-  - `numPublishers` number of Kafka publishers concurrently
+  - `numPublishers` number of Pubsub publishers concurrently
   - `numDataGenThreads` number of data generation threads, only increase the number if data pool is constantly empty which may potentially affect the publishing performance
   - `numWorkers` better to keep this same as `numPublishers`, this only pull the data from the pool and fill the data chanel, which is dedicated for each publisher
 

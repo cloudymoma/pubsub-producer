@@ -238,6 +238,9 @@ func main() {
 		}
 	}()
 
+	// numPublishers := runtime.NumCPU()     // threads for publishing message to Kafka from channels
+	// numDataGenThreads := runtime.NumCPU() // threads for generating data and fill the dataPool
+	// numWorkers := runtime.NumCPU()        // threads for consuming data from dataPool and publish to channels
 	numPublishers := 2
 	numDataGenThreads := 2
 	numWorkers := 2
